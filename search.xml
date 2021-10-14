@@ -1,20 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>欢迎来到我的博客</title>
-    <url>/2021/10/12/hello-world/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>jfkjg</title>
-    <url>/2021/10/12/%E5%97%AF%E5%97%AF/</url>
-    <content><![CDATA[<p>低功耗设计符合</p>
+    <title>sublime的安装与配置</title>
+    <url>/2021/10/12/sublime/</url>
+    <content><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sublime Text 是一个<font color="#ff0000" size="2">文本编辑器</font>（收费软件，可以无限期试用，但是会有激活提示弹窗），同时也是一个先进的<font color="#ff0000" size="2">代码编辑器</font>。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩展功能的Vim。<p><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sublime Text具有漂亮的用户界面和强大的功能，例如代码缩略图，Python的插件，代码段等。还可自定义键绑定，菜单和工具栏。Sublime Text的主要功能包括：<font color="#0000ff" size="2">拼写检查，书签，完整的Python API ， Goto 功能，即时项目切换，多选择，多窗口</font>等等。Sublime Text 是一个跨平台的编辑器，同时支持<font color="#ff00ff" size="2">Windows、Linux、Mac OS X</font>等操作系统。</p>
+<hr>
+<p><strong>直接进入主题</strong></p>
+<p><font color="#000000" size="2">1.先去百度上搜索sublime,点击官方的链接。也可直接直接复制我给的地址过去<font color="#0000ff" size="2">https://www.sublimetext.com/</font> &nbsp;
+当然,已经有安装包的请跳过这一步和第二步,直接到第三步，如果已经安装软件直接跳到第五步!</font><p>
+<img src="/img/sublime/1.png">
+<p>2.进入官网之后就是下图的界面,这时直接点击<font color="#ff0000" size="2">DOWNLOAD FOR WINDOWS</font>就OK了。<p>
+<img src="/img/sublime/2.png">
+<p>3.下载好后双击安装，一直点是就行(安装路径可自行更改)。如果在桌面看不到软件图标的话,点击窗口键就可看到软件图标了。如果嫌每次如此打开麻烦，可以给sublime软件设置快捷方式:<font color="#ff0000" size="2">右击软件 —>(更多) —>打开文件路径 —>找到Sublime Text文件 —>拖动到桌面</font>，最后就可直接在桌面打开sublime了。<p>
+<img src="/img/sublime/3.png">
+<img src="/img/sublime/4.png">
+<p>4.现在就到sublime默认浏览器的配置了<font color="#0000ff" size="2">(此教程为电脑默认浏览器是什么浏览器，sublime就把默认浏览器设置为相应的浏览器,如需更改请自行百度,或者直接私信我)</font>
+<p>5.打开软件后<font color="#ff0000" size="2">点击Tools选项,最末尾有个Install Package Control...选项</font>，点击它就会下载一个控制包<font color="#0000ff" size="2">(需要有网，并且请耐心等待!)</font>。<p>
+<img src="/img/sublime/5.png">
+<p>6.控制包下载好后会有下图提示，点击确认就行。<font color="#ff0000" size="2">(在第五步完成后等待软件自己下载好，然后就会弹出提示)</font><p>
+<img src="/img/sublime/6.png">
+<p>7.此处不啰嗦，按下图行事!<p>
+<img src="/img/sublime/7.png">
+<p>8.进入settings之后会有如下界面弹出,<font color="#ff0000" size="2">把右边红色框起来的代码全部删除!</font><p>
+<img src="/img/sublime/8.png">
+<p>9.把右边代码删除之后，敲下如下代码:<p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> &quot;bootstrapped&quot;: true,</span><br><span class="line"> &quot;in_process_packages&quot;:</span><br><span class="line"> [</span><br><span class="line"> ],</span><br><span class="line"> &quot;installed_packages&quot;:</span><br><span class="line"> [</span><br><span class="line">  &quot;HTML-CSS-JS Prettify&quot;,</span><br><span class="line">  &quot;Package Control&quot;,</span><br><span class="line">  &quot;View In Browser&quot;,</span><br><span class="line"> ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>10.效果如下:<p>
+<img src="/img/sublime/9.png">
+<p>11.最后!当在编辑器上敲好一个html代码时，<font color="#ff0000" size="2">Ctrl+s保存(并且后缀名为html!)</font>，这时在编辑器右击就可看到<font color="#ff0000" size="2">Open in Browser</font>，点击它就可在浏览器展示html了。此处我以一个简单的html代码展示:<p>
+<img src="/img/sublime/10.png">
+<p><font size="3" color="#ff0000">注:一定要保存!后缀名一定要是.html!</font>
 ]]></content>
-  </entry>
-  <entry>
-    <title>gg</title>
-    <url>/2021/10/12/%E5%93%88%E5%93%88/</url>
-    <content><![CDATA[<p>哈哈哈</p>
-]]></content>
+      <categories>
+        <category>软件</category>
+      </categories>
+      <tags>
+        <tag>sublime</tag>
+      </tags>
   </entry>
 </search>
