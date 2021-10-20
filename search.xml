@@ -27,7 +27,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> &quot;bootstrapped&quot;: true,</span><br><span class="line"> &quot;in_process_packages&quot;:</span><br><span class="line"> [</span><br><span class="line"> ],</span><br><span class="line"> &quot;installed_packages&quot;:</span><br><span class="line"> [</span><br><span class="line">  &quot;HTML-CSS-JS Prettify&quot;,</span><br><span class="line">  &quot;Package Control&quot;,</span><br><span class="line">  &quot;View In Browser&quot;,</span><br><span class="line"> ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>10.效果如下:<p>
 <img src="/img/sublime/9.png">
-<p><font size="3" color="#ff0000">先保存再关掉!</font>
+<p><font size="3" color="#ff0000">先保存再关掉!(需要网络,要不然sublime自动安装插件不成功!)</font>
 <p>11.最后!当在编辑器上敲好一个html代码时，<font color="#ff0000" >Ctrl+s保存(并且后缀名为html!)</font>，这时在编辑器右击就可看到<font color="#ff0000" >Open in Browser</font>，点击它就可在浏览器展示html了。此处我以一个简单的html代码展示:<p>
 <img src="/img/sublime/10.png">
 <p><font size="3" color="#ff0000">注:一定要保存!后缀名一定要是.html!</font>
@@ -37,6 +37,19 @@
       </categories>
       <tags>
         <tag>sublime</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode的安装与配置</title>
+    <url>/2021/10/20/vscode/</url>
+    <content><![CDATA[<p><strong>一、关于 VS Code</strong><br>Visual Studio Code(VS Code)是微软2015年推出的一个轻量但功能强大的源代码编辑器，基于 Electron 开发，支持 Windows、Linux 和 macOS 操作系统。内置了对JavaScript，TypeScript和Node.js的支持并且具有丰富的其它语言和扩展的支持，功能超级强大。<br>VSCode是一款免费开源的现代化轻量级代码编辑器，支持几乎所有主流的开发语言的语法高亮、智能代码补全、自定义快捷键、括号匹配和颜色区分、代码片段、代码对比 Diff、GIT命令等特性，支持插件扩展，并针对网页开发和云端应用开发做了优化。</p>
+<p><strong>二、VS Code安装</strong><br>1.VS Code官方下载链接<a href="https://visualstudio.microsoft.com/zh-hans/">https://visualstudio.microsoft.com/zh-hans/</a>,进去后找到下图页面,选择对应的版本下载。<br><img src="/img/vscode/1.png"><br>2.下载好之后双击安装就好,需要注意的就是个人对安装路径的安排(比如我就喜欢安装在D盘),还有一个就是在附加任务里,“将code注册为受支持的文件类型的编辑器”和“添加到PATH”,这两项一定要勾选(默认已选),其他的选项看个人意愿。<br><img src="/img/vscode/2.png"><br>3.进去后点击扩展下载中文包插件和Live Server。<br><img src="/img/vscode/3.png"><br>安装好中文包时会提醒重启,重启就好。<br><img src="/img/vscode/4.png"><br>4.Live Server使用需要注意的地方<br>①.Live Server要工作起来得要在一个文件夹目录下(要不然找不到文件),就是不能在C盘、D盘等等这些盘下工作,简单讲就是VS Code要在一个文件夹内开始项目。比如我在桌面上新建了一个叫“paper”的文件夹(我就用这文件夹来存放我写关于网页的东西,文件夹叫什么名字,用来存放什么内容看自己的需求),然后就用VS Code打开这个文件夹<br><img src="/img/vscode/5.png"><br><img src="/img/vscode/6.png"><br>②.当VS Code进入我新建的“paper”文件夹时,这时候就可以对这个文件夹添加文件或文件夹了。<br><img src="/img/vscode/7.png"><br>③.点击新建文件(建一个.html的文件,我这就建个简单的one.html文件),建好后输入HTML代码(我这就用最基本的html为例)并保存,然后右击文件就会有一个Open with Live Server,点击它,浏览器就会自动展示html网页。<br><img src="/img/vscode/8.png"><br>也可以点击右下角的“GO Live”(没有的话重启VS Code,或者用以上右击使用一次),这样可以快速的打开浏览器。<br><img src="/img/vscode/9.png"><br>5.VS Code的自动保存(搭配Live Server使用特好用,当写好html代码时,不需要手动保存,并且!并且!你的网页也不需要手动刷新就可以展示你修改好后的内容),怎么设置:设置–&gt;文本编辑器–&gt;文件–&gt;Aotu Save<br><img src="/img/vscode/10.png"><br>VS Code的自动保存有三种模式,我比较喜欢模式1:afterDelay<br><img src="/img/vscode/11.png"><br>其他两种模式:onFocusChange、onWindowChange<br><img src="/img/vscode/12.png"><br><img src="/img/vscode/13.png"></p>
+]]></content>
+      <categories>
+        <category>软件</category>
+      </categories>
+      <tags>
+        <tag>vscode</tag>
       </tags>
   </entry>
 </search>
