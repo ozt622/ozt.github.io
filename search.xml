@@ -52,4 +52,62 @@
         <tag>vscode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>eNSP 静态路由的配置</title>
+    <url>/2021/10/22/eNSP-%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1/</url>
+    <content><![CDATA[<h2>什么是静态路由?</h2>
+
+<blockquote>
+<p>静态路由（英语：Static routing）是一种路由的方式，路由项（routing entry）由手动配置，而非动态决定。与动态路由不同，静态路由是固定的，不会改变，即使网络状况已经改变或是重新被组态。一般来说，静态路由是由网络管理员逐项加入路由表。</p>
+<h2>优点</h2>
+使用静态路由的另一个好处是网络安全保密性高。动态路由因为需要路由器之间频繁地交换各自的路由表，而对路由表的分析可以揭示网络的拓扑结构和网络地址等信息。因此，网络出于安全方面的考虑也可以采用静态路由。不占用网络带宽，因为静态路由不会产生更新流量。静态路由适用于中小型网络。
+<h2>缺点</h2>
+大型和复杂的网络环境通常不宜采用静态路由。一方面，网络管理员难以全面地了解整个网络的拓扑结构；另一方面，当网络的拓扑结构和链路状态发生变化时，路由器中的静态路由信息需要大范围地调整，这一工作的难度和复杂程度非常高。当网络发生变化或网络发生故障时，不能重选路由，很可能使路由失败。
+</blockquote>
+<p><font size="6">网络拓扑图</font>(画的拓扑图虽然简单,但是该有的配置都有了。)</p>
+<blockquote>
+<img src="/img/eNSP-静态路由/1.png">
+</blockquote>
+<h2>配置</h2>
+
+<p>PC1配置:</p>
+<blockquote>
+<p>  IP地址:10.0.1.1<br>  子网掩码:255.255.255.0<br>  网关:10.0.1.254</p>
+</blockquote>
+<p>PC2配置:</p>
+<blockquote>
+<p>IP地址:10.0.2.1<br>子网掩码:255.255.255.0<br>网关:10.0.2.254</p>
+</blockquote>
+<p>R1配置:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[R1]sysname R1</span><br><span class="line">[R1]interface g0/0/0</span><br><span class="line">[R1-GigabitEthernet0/0/0]ip address 10.0.0.1 24</span><br><span class="line">[R1-GigabitEthernet0/0/0]interface g0/0/1</span><br><span class="line">[R1-GigabitEthernet0/0/1]ip address 10.0.1.254 24</span><br><span class="line">[R1-GigabitEthernet0/0/1]quit</span><br></pre></td></tr></table></figure>
+<p>R2配置:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[R2]sysname R2</span><br><span class="line">[R2]interface g0/0/0</span><br><span class="line">[R2-GigabitEthernet0/0/0]ip address 10.0.0.2 24</span><br><span class="line">[R2-GigabitEthernet0/0/0]interface g0/0/1</span><br><span class="line">[R2-GigabitEthernet0/0/1]ip address 10.0.2.254 24</span><br><span class="line">[R2-GigabitEthernet0/0/1]quit</span><br></pre></td></tr></table></figure>
+<h2 id="验证网络情况"><a href="#验证网络情况" class="headerlink" title="验证网络情况"></a>验证网络情况</h2><p>1.未配置静态路由前网络互通情况:</p>
+<blockquote>
+<p>PC&gt;ping 10.0.2.1</p>
+<p>Ping 10.0.2.1: 32 data bytes, Press Ctrl_C to break<br>Request timeout!<br>Request timeout!<br>Request timeout!<br>Request timeout!<br>Request timeout!</p>
+<p>— 10.0.2.1 ping statistics —<br> 5 packet(s) transmitted<br> 0 packet(s) received<br> 100.00% packet loss</p>
+<p>PC2:<br>PC&gt;ping 10.0.1.1</p>
+<p>Ping 10.0.1.1: 32 data bytes, Press Ctrl_C to break<br>Request timeout!<br>Request timeout!<br>Request timeout!<br>Request timeout!<br>Request timeout!</p>
+<p>— 10.0.1.1 ping statistics —<br> 5 packet(s) transmitted<br> 0 packet(s) received<br> 100.00% packet loss</p>
+</blockquote>
+<p>2.配置静态路由:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R1:</span><br><span class="line">    [R1]ip route-static 10.0.2.0 24 10.0.0.2   //ip route-static 目标网段 目标掩码 下一跳ip地址(可以是接口)</span><br><span class="line">R2:</span><br><span class="line">    [R2]ip route-static 10.0.1.0 24 10.0.0.1   //ip route-static 目标网段 目标掩码 下一跳ip地址(可以是接口)</span><br></pre></td></tr></table></figure>
+<p>3.配置静态路由后网络互通情况:</p>
+<blockquote>
+<p>PC1:<br>PC&gt;ping 10.0.2.1</p>
+<p>Ping 10.0.2.1: 32 data bytes, Press Ctrl_C to break<br>Request timeout!<br>From 10.0.2.1: bytes=32 seq=2 ttl=254 time=63 ms<br>From 10.0.2.1: bytes=32 seq=3 ttl=254 time=16 ms<br>From 10.0.2.1: bytes=32 seq=4 ttl=254 time=31 ms<br>From 10.0.2.1: bytes=32 seq=5 ttl=254 time=15 ms</p>
+<p>— 10.0.2.1 ping statistics —<br> 5 packet(s) transmitted<br> 4 packet(s) received<br> 20.00% packet loss<br> round-trip min/avg/max = 0/31/63 ms</p>
+<p>PC2:<br>PC&gt;ping 10.0.1.1</p>
+<p>Ping 10.0.1.1: 32 data bytes, Press Ctrl_C to break<br>From 10.0.1.1: bytes=32 seq=1 ttl=126 time=32 ms<br>From 10.0.1.1: bytes=32 seq=2 ttl=126 time=15 ms<br>From 10.0.1.1: bytes=32 seq=3 ttl=126 time=16 ms<br>From 10.0.1.1: bytes=32 seq=4 ttl=126 time=31 ms<br>From 10.0.1.1: bytes=32 seq=5 ttl=126 time=16 ms</p>
+<p>— 10.0.1.1 ping statistics —<br> 5 packet(s) transmitted<br> 5 packet(s) received<br> 0.00% packet loss<br> round-trip min/avg/max = 15/22/32 ms</p>
+</blockquote>
+<h4 id="PC机间不通信到互相通信-到此-静态路由配置完毕"><a href="#PC机间不通信到互相通信-到此-静态路由配置完毕" class="headerlink" title="PC机间不通信到互相通信,到此,静态路由配置完毕"></a>PC机间不通信到互相通信,到此,静态路由配置完毕</h4>]]></content>
+      <categories>
+        <category>eNSP</category>
+      </categories>
+      <tags>
+        <tag>静态路由</tag>
+      </tags>
+  </entry>
 </search>
