@@ -79,14 +79,16 @@
 <p>IP地址:10.0.2.1<br>子网掩码:255.255.255.0<br>网关:10.0.2.254</p>
 </blockquote>
 <p>R1配置:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[R1]sysname R1</span><br><span class="line">[R1]interface g0/0/0</span><br><span class="line">[R1-GigabitEthernet0/0/0]ip address 10.0.0.1 24</span><br><span class="line">[R1-GigabitEthernet0/0/0]interface g0/0/1</span><br><span class="line">[R1-GigabitEthernet0/0/1]ip address 10.0.1.254 24</span><br><span class="line">[R1-GigabitEthernet0/0/1]quit</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Huawei]sysname R1</span><br><span class="line">[R1]interface g0/0/0</span><br><span class="line">[R1-GigabitEthernet0/0/0]ip address 10.0.0.1 24</span><br><span class="line">[R1-GigabitEthernet0/0/0]interface g0/0/1</span><br><span class="line">[R1-GigabitEthernet0/0/1]ip address 10.0.1.254 24</span><br><span class="line">[R1-GigabitEthernet0/0/1]quit</span><br></pre></td></tr></table></figure>
 <p>R2配置:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[R2]sysname R2</span><br><span class="line">[R2]interface g0/0/0</span><br><span class="line">[R2-GigabitEthernet0/0/0]ip address 10.0.0.2 24</span><br><span class="line">[R2-GigabitEthernet0/0/0]interface g0/0/1</span><br><span class="line">[R2-GigabitEthernet0/0/1]ip address 10.0.2.254 24</span><br><span class="line">[R2-GigabitEthernet0/0/1]quit</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Huawei]sysname R2</span><br><span class="line">[R2]interface g0/0/0</span><br><span class="line">[R2-GigabitEthernet0/0/0]ip address 10.0.0.2 24</span><br><span class="line">[R2-GigabitEthernet0/0/0]interface g0/0/1</span><br><span class="line">[R2-GigabitEthernet0/0/1]ip address 10.0.2.254 24</span><br><span class="line">[R2-GigabitEthernet0/0/1]quit</span><br></pre></td></tr></table></figure>
 <h2 id="验证网络情况"><a href="#验证网络情况" class="headerlink" title="验证网络情况"></a>验证网络情况</h2><p>1.未配置静态路由前网络互通情况:</p>
 <blockquote>
-<p>PC&gt;ping 10.0.2.1</p>
+<p>PC1:<br>PC&gt;ping 10.0.2.1</p>
 <p>Ping 10.0.2.1: 32 data bytes, Press Ctrl_C to break<br>Request timeout!<br>Request timeout!<br>Request timeout!<br>Request timeout!<br>Request timeout!</p>
 <p>— 10.0.2.1 ping statistics —<br> 5 packet(s) transmitted<br> 0 packet(s) received<br> 100.00% packet loss</p>
+</blockquote>
+<blockquote>
 <p>PC2:<br>PC&gt;ping 10.0.1.1</p>
 <p>Ping 10.0.1.1: 32 data bytes, Press Ctrl_C to break<br>Request timeout!<br>Request timeout!<br>Request timeout!<br>Request timeout!<br>Request timeout!</p>
 <p>— 10.0.1.1 ping statistics —<br> 5 packet(s) transmitted<br> 0 packet(s) received<br> 100.00% packet loss</p>
@@ -98,6 +100,8 @@
 <p>PC1:<br>PC&gt;ping 10.0.2.1</p>
 <p>Ping 10.0.2.1: 32 data bytes, Press Ctrl_C to break<br>Request timeout!<br>From 10.0.2.1: bytes=32 seq=2 ttl=254 time=63 ms<br>From 10.0.2.1: bytes=32 seq=3 ttl=254 time=16 ms<br>From 10.0.2.1: bytes=32 seq=4 ttl=254 time=31 ms<br>From 10.0.2.1: bytes=32 seq=5 ttl=254 time=15 ms</p>
 <p>— 10.0.2.1 ping statistics —<br> 5 packet(s) transmitted<br> 4 packet(s) received<br> 20.00% packet loss<br> round-trip min/avg/max = 0/31/63 ms</p>
+</blockquote>
+<blockquote>
 <p>PC2:<br>PC&gt;ping 10.0.1.1</p>
 <p>Ping 10.0.1.1: 32 data bytes, Press Ctrl_C to break<br>From 10.0.1.1: bytes=32 seq=1 ttl=126 time=32 ms<br>From 10.0.1.1: bytes=32 seq=2 ttl=126 time=15 ms<br>From 10.0.1.1: bytes=32 seq=3 ttl=126 time=16 ms<br>From 10.0.1.1: bytes=32 seq=4 ttl=126 time=31 ms<br>From 10.0.1.1: bytes=32 seq=5 ttl=126 time=16 ms</p>
 <p>— 10.0.1.1 ping statistics —<br> 5 packet(s) transmitted<br> 5 packet(s) received<br> 0.00% packet loss<br> round-trip min/avg/max = 15/22/32 ms</p>
@@ -108,6 +112,58 @@
       </categories>
       <tags>
         <tag>静态路由</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>eNSP rip的配置</title>
+    <url>/2021/10/23/eNSP-rip/</url>
+    <content><![CDATA[<h2 id="RIP协议"><a href="#RIP协议" class="headerlink" title="RIP协议"></a>RIP协议</h2><blockquote>
+<p>RIP(RoutinginformationProtocol)是应用较早、使用较普遍的内部网关协议(InteriorGatewayProtocol,简称IGP)，适用于小型同类网络，是典型的距离向量(算法)协议(一种动态路由协议)，使用0-15跳数来衡量到达目的地址的路由距离。</p>
+</blockquote>
+<h2 id="为什么使用rip"><a href="#为什么使用rip" class="headerlink" title="为什么使用rip?"></a>为什么使用rip?</h2><blockquote>
+<p>在只有静态路由时有几个不能解决的问题:<br>  *当链路状态和网络拓扑结构发生改变时,需要人工对路由器进行大范围更改,工作复杂性高。<br>  *(静态路由)网络发生故障时,不能重选路由,可能会导致路由失败。<br>于是出现了动态路由协议,让路由自己学习网络,适应网络的变化。</p>
+</blockquote>
+<h2 id="网络拓扑"><a href="#网络拓扑" class="headerlink" title="网络拓扑"></a>网络拓扑</h2><blockquote>
+<p><img src="/img/rip/1.png" alt="rip"></p>
+</blockquote>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><blockquote>
+<p>PC1：<br>IP地址:192.168.1.1<br>子网掩码:255.255.255.0<br>网关:192.168.1.254</p>
+</blockquote>
+<blockquote>
+<p>PC2：<br>IP地址:192.168.2.1<br>子网掩码:255.255.255.0<br>网关:192.168.2.254</p>
+</blockquote>
+<blockquote>
+<p>PC3：<br>IP地址:192.168.4.1<br>子网掩码:255.255.255.0<br>网关:192.168.4.254</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R1:</span><br><span class="line">&lt;Huawei&gt;system-view </span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[Huawei]sysname R1</span><br><span class="line">[R1]interface g0/0/0</span><br><span class="line">[R1-GigabitEthernet0/0/0]ip address 192.168.3.1 24</span><br><span class="line">[R1-GigabitEthernet0/0/0]interface g0/0/1</span><br><span class="line">[R1-GigabitEthernet0/0/1]ip address 192.168.1.254 24	</span><br><span class="line">[R1-GigabitEthernet0/0/1]quit</span><br><span class="line">[R1]rip </span><br><span class="line">[R1-rip-1]network 192.168.1.0</span><br><span class="line">[R1-rip-1]network 192.168.3.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R2:</span><br><span class="line">&lt;Huawei&gt;system-view </span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[Huawei]sysname R2</span><br><span class="line">[R2]interface g0/0/0</span><br><span class="line">[R2-GigabitEthernet0/0/0]ip address 192.168.3.2 24</span><br><span class="line">[R2-GigabitEthernet0/0/0]interface g0/0/1</span><br><span class="line">[R2-GigabitEthernet0/0/1]ip address 192.168.5.1 24	</span><br><span class="line">[R2-GigabitEthernet0/0/1]quit</span><br><span class="line">[R2]vlan 10</span><br><span class="line">[R2-vlan10]interface vlan 10</span><br><span class="line">[R2-Vlanif10]ip address 192.168.2.254 24</span><br><span class="line">[R2-Vlanif10]quit</span><br><span class="line">[R2]interface e0/0/0	</span><br><span class="line">[R2-Ethernet0/0/0]port link-type access </span><br><span class="line">[R2-Ethernet0/0/0]port default vlan 10</span><br><span class="line">[R2-Ethernet0/0/0]quit</span><br><span class="line">[R2]rip </span><br><span class="line">[R2-rip-1]network 192.168.2.0</span><br><span class="line">[R2-rip-1]network 192.168.3.0</span><br><span class="line">[R2-rip-1]network 192.168.5.0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R3:</span><br><span class="line">&lt;Huawei&gt;system-view </span><br><span class="line">Enter system view, return user view with Ctrl+Z.</span><br><span class="line">[Huawei]sysname R3</span><br><span class="line">[R3]interface g0/0/0</span><br><span class="line">[R3-GigabitEthernet0/0/0]ip address 192.168.5.2 24</span><br><span class="line">[R3-GigabitEthernet0/0/0]interface g0/0/1</span><br><span class="line">[R3-GigabitEthernet0/0/1]ip address 192.168.4.254 24	</span><br><span class="line">[R3-GigabitEthernet0/0/1]quit</span><br><span class="line">[R3]rip </span><br><span class="line">[R3-rip-1]network 192.168.4.0</span><br><span class="line">[R3-rip-1]network 192.168.5.0</span><br></pre></td></tr></table></figure>
+<p><font size="6">查看RIP</font>(display ip routing-table protocol rip)</p>
+<p>R1 rip信息:</p>
+<blockquote>
+<p><img src="/img/rip/2.png"></p>
+</blockquote>
+<p>R2 rip信息:</p>
+<blockquote>
+<p><img src="/img/rip/3.png"></p>
+</blockquote>
+<p>R3 rip信息:</p>
+<blockquote>
+<p><img src="/img/rip/4.png"></p>
+</blockquote>
+<p>由以上三个图可知,路由器已经通过rip动态路由协议学习了其他的网络。以R3路由器为例,R3路由器本身就可以访问192.168.4.0和192.168.5.0这两个网段的网络(R3连接有这两个网络),再看R rip信息的图,Destination/Mask的信息里就没有这两个网段的信息,而192.168.1.0，192.168.2.0，192.168.3.0这三个网络是R3使用rip协议学习来的,通过NextHop(下一跳)学习得来。<br>通俗来讲就是,你跟张三是好朋友,你想认识李四,你知道张三跟李四是好朋友(你的好朋友张三告诉你的),这时你就可以通过张三来认识李四了。<br><br></p>
+<h2 id="PC间的网络情况"><a href="#PC间的网络情况" class="headerlink" title="PC间的网络情况"></a>PC间的网络情况</h2><p>PC１：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PC&gt;ping 192.168.2.1</span><br><span class="line"></span><br><span class="line">Ping 192.168.2.1: 32 data bytes, Press Ctrl_C to break</span><br><span class="line">Request timeout!</span><br><span class="line">From 192.168.2.1: bytes=32 seq=2 ttl=126 time=16 ms</span><br><span class="line">From 192.168.2.1: bytes=32 seq=3 ttl=126 time=31 ms</span><br><span class="line">From 192.168.2.1: bytes=32 seq=4 ttl=126 time=16 ms</span><br><span class="line">From 192.168.2.1: bytes=32 seq=5 ttl=126 time=16 ms</span><br><span class="line"></span><br><span class="line">--- 192.168.2.1 ping statistics ---</span><br><span class="line">  5 packet(s) transmitted</span><br><span class="line">  4 packet(s) received</span><br><span class="line">  20.00% packet loss</span><br><span class="line">  round-trip min/avg/max = 0/19/31 ms</span><br><span class="line"></span><br><span class="line">PC&gt;ping 192.168.4.1</span><br><span class="line"></span><br><span class="line">Ping 192.168.4.1: 32 data bytes, Press Ctrl_C to break</span><br><span class="line">From 192.168.4.1: bytes=32 seq=1 ttl=125 time=16 ms</span><br><span class="line">From 192.168.4.1: bytes=32 seq=2 ttl=125 time=31 ms</span><br><span class="line">Request timeout!</span><br><span class="line">From 192.168.4.1: bytes=32 seq=4 ttl=125 time=31 ms</span><br><span class="line">From 192.168.4.1: bytes=32 seq=5 ttl=125 time=32 ms</span><br><span class="line"></span><br><span class="line">--- 192.168.4.1 ping statistics ---</span><br><span class="line">  5 packet(s) transmitted</span><br><span class="line">  4 packet(s) received</span><br><span class="line">  20.00% packet loss</span><br><span class="line">  round-trip min/avg/max = 16/27/32 ms</span><br></pre></td></tr></table></figure>
+<p>PC２：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PC&gt;ping 192.168.1.1</span><br><span class="line"></span><br><span class="line">Ping 192.168.1.1: 32 data bytes, Press Ctrl_C to break</span><br><span class="line">Request timeout!</span><br><span class="line">From 192.168.1.1: bytes=32 seq=2 ttl=126 time=15 ms</span><br><span class="line">From 192.168.1.1: bytes=32 seq=3 ttl=126 time=32 ms</span><br><span class="line">From 192.168.1.1: bytes=32 seq=4 ttl=126 time=15 ms</span><br><span class="line">From 192.168.1.1: bytes=32 seq=5 ttl=126 time=32 ms</span><br><span class="line"></span><br><span class="line">--- 192.168.1.1 ping statistics ---</span><br><span class="line">  5 packet(s) transmitted</span><br><span class="line">  4 packet(s) received</span><br><span class="line">  20.00% packet loss</span><br><span class="line">  round-trip min/avg/max = 0/23/32 ms</span><br><span class="line"></span><br><span class="line">PC&gt;ping 192.168.4.1</span><br><span class="line"></span><br><span class="line">Ping 192.168.4.1: 32 data bytes, Press Ctrl_C to break</span><br><span class="line">Request timeout!</span><br><span class="line">From 192.168.4.1: bytes=32 seq=2 ttl=126 time=32 ms</span><br><span class="line">From 192.168.4.1: bytes=32 seq=3 ttl=126 time=15 ms</span><br><span class="line">From 192.168.4.1: bytes=32 seq=4 ttl=126 time=32 ms</span><br><span class="line">From 192.168.4.1: bytes=32 seq=5 ttl=126 time=31 ms</span><br><span class="line"></span><br><span class="line">--- 192.168.4.1 ping statistics ---</span><br><span class="line">  5 packet(s) transmitted</span><br><span class="line">  4 packet(s) received</span><br><span class="line">  20.00% packet loss</span><br><span class="line">  round-trip min/avg/max = 0/27/32 ms</span><br></pre></td></tr></table></figure>
+<p>PC３：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PC&gt;ping 192.168.1.1</span><br><span class="line"></span><br><span class="line">Ping 192.168.1.1: 32 data bytes, Press Ctrl_C to break</span><br><span class="line">From 192.168.1.1: bytes=32 seq=1 ttl=125 time=16 ms</span><br><span class="line">From 192.168.1.1: bytes=32 seq=2 ttl=125 time=31 ms</span><br><span class="line">From 192.168.1.1: bytes=32 seq=3 ttl=125 time=31 ms</span><br><span class="line">From 192.168.1.1: bytes=32 seq=4 ttl=125 time=31 ms</span><br><span class="line">From 192.168.1.1: bytes=32 seq=5 ttl=125 time=32 ms</span><br><span class="line"></span><br><span class="line">--- 192.168.1.1 ping statistics ---</span><br><span class="line">  5 packet(s) transmitted</span><br><span class="line">  5 packet(s) received</span><br><span class="line">  0.00% packet loss</span><br><span class="line">  round-trip min/avg/max = 16/28/32 ms</span><br><span class="line"></span><br><span class="line">PC&gt;ping 192.168.2.1</span><br><span class="line"></span><br><span class="line">Ping 192.168.2.1: 32 data bytes, Press Ctrl_C to break</span><br><span class="line">From 192.168.2.1: bytes=32 seq=1 ttl=126 time=31 ms</span><br><span class="line">From 192.168.2.1: bytes=32 seq=2 ttl=126 time=31 ms</span><br><span class="line">From 192.168.2.1: bytes=32 seq=3 ttl=126 time=16 ms</span><br><span class="line">From 192.168.2.1: bytes=32 seq=4 ttl=126 time=16 ms</span><br><span class="line">From 192.168.2.1: bytes=32 seq=5 ttl=126 time=31 ms</span><br><span class="line"></span><br><span class="line">--- 192.168.2.1 ping statistics ---</span><br><span class="line">  5 packet(s) transmitted</span><br><span class="line">  5 packet(s) received</span><br><span class="line">  0.00% packet loss</span><br><span class="line">  round-trip min/avg/max = 16/25/31 ms</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>eNSP</category>
+      </categories>
+      <tags>
+        <tag>rip</tag>
       </tags>
   </entry>
 </search>
